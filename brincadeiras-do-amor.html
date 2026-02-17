@@ -771,17 +771,20 @@ Te amo mais do que consigo expressar com palavras, Ana. Obrigado por ser quem vo
             canvas.addEventListener('touchmove', rasparSeAtivo);
         }
 
-        function iniciarRaspagem() {
+        function iniciarRaspagem(e) {
+            if (e && e.type && e.type.startsWith && e.type.startsWith('touch')) e.preventDefault();
             if (!reveladoRaspadinha) {
                 mouseDown = true;
             }
         }
 
-        function pararRaspagem() {
+        function pararRaspagem(e) {
+            if (e && e.type && e.type.startsWith && e.type.startsWith('touch')) e.preventDefault();
             mouseDown = false;
         }
 
         function rasparSeAtivo(e) {
+            if (e && e.type && e.type.startsWith && e.type.startsWith('touch')) e.preventDefault();
             if (!mouseDown || reveladoRaspadinha) return;
             rasparCartao(e);
         }
