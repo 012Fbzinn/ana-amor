@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>Ana Clara Santiago Costa</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --azul-bebe: #ADD8E6;
+            --rosa-bebe: #FFB6C1;
+            --cinza: #9B9B9B;
+            --cinza-claro: #D3D3D3;
+            --branco: #FFFFFF;
+            --texto-escuro: #2C3E50;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--texto-escuro);
+            background: linear-gradient(135deg, #ff4d6d, #ff8fab, #ffc2d1);
+            min-height: 100vh;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--cinza);
+            font-weight: 600;
+            transition: color 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        nav a:hover {
+            color: var(--rosa-bebe);
+        }
+
+        @media (max-width: 600px) {
+            nav {
+                padding: 0.8rem 1rem;
+            }
+
+            nav ul {
+                gap: 0.8rem;
+                font-size: 0.85rem;
+            }
+
+            nav a {
+                font-size: 0.8rem;
+                padding: 0.5rem;
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--branco);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            animation: fadeInDown 0.8s ease;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            opacity: 0.95;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 3rem 1.5rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 2rem 1rem;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero .subtitle {
+                font-size: 0.95rem;
+            }
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Sections */
+        section {
+            background: var(--branco);
+            margin: 2rem auto;
+            padding: 3rem 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 0.8s ease;
+        }
+
+        section h2 {
+            color: var(--azul-bebe);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            border-bottom: 3px solid var(--azul-bebe);
+            padding-bottom: 1rem;
+        }
+
+        @media (max-width: 600px) {
+            section {
+                margin: 1.5rem auto;
+                padding: 2rem 1.5rem;
+                border-radius: 12px;
+            }
+
+            section h2 {
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+                padding-bottom: 0.75rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            section {
+                margin: 1rem auto;
+                padding: 1.5rem 1rem;
+                border-radius: 10px;
+            }
+
+            section h2 {
+                font-size: 1.3rem;
+                margin-bottom: 0.75rem;
+            }
+        }
+
+        /* Sobre Section */
+        .sobre {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .sobre-texto h3 {
+            color: var(--cinza);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .sobre-texto p {
+            margin-bottom: 1rem;
+            color: var(--texto-escuro);
+            line-height: 1.8;
+        }
+
+        .personalidade-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .trait {
+            background: linear-gradient(135deg, var(--azul-bebe) 0%, var(--rosa-bebe) 100%);
+            color: var(--branco);
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 600;
+            transition: transform 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .trait:hover {
+            transform: translateY(-5px);
+        }
+
+        @media (max-width: 768px) {
+            .sobre {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .sobre-texto h3 {
+                font-size: 1.1rem;
+            }
+
+            .sobre-texto p {
+                font-size: 0.95rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .personalidade-list {
+                grid-template-columns: 1fr;
+                gap: 0.75rem;
+            }
+
+            .trait {
+                padding: 0.8rem;
+                font-size: 0.85rem;
+            }
+
+            .sobre-texto p {
+                font-size: 0.9rem;
+                line-height: 1.6;
+            }
+        }
+
+        /* Hobbies */
+        .hobbies {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .hobby-card {
+            background: linear-gradient(135deg, rgba(173, 216, 230, 0.2) 0%, rgba(255, 182, 193, 0.2) 100%);
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 5px solid var(--rosa-bebe);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .hobby-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+            border-left-color: var(--azul-bebe);
+        }
+
+        .hobby-card h3 {
+            color: var(--rosa-bebe);
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+
+        .hobby-card p {
+            color: var(--cinza);
+        }
+
+        @media (max-width: 600px) {
+            .hobbies {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .hobby-card {
+                padding: 1.5rem;
+            }
+
+            .hobby-card h3 {
+                font-size: 1.3rem;
+            }
+
+            .hobby-card p {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hobby-card {
+                padding: 1.2rem;
+                border-left: 4px solid var(--rosa-bebe);
+            }
+
+            .hobby-card h3 {
+                font-size: 1.1rem;
+            }
+        }
+
+        /* Características Marcantes */
+        .caracteristicas {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .caracteristica-card {
+            background: linear-gradient(135deg, var(--azul-bebe) 0%, var(--rosa-bebe) 100%);
+            color: var(--branco);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .caracteristica-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .caracteristica-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .emoji {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .caracteristicas {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .caracteristica-card {
+                padding: 1.5rem;
+            }
+
+            .caracteristica-card h3 {
+                font-size: 1.2rem;
+                margin-bottom: 0.3rem;
+            }
+
+            .emoji {
+                font-size: 2.5rem;
+                margin-bottom: 0.75rem;
+            }
+        }
+
+        /* Galeria */
+        .galeria {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .foto-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            aspect-ratio: 1;
+        }
+
+        .foto-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .foto-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .foto-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+        }
+
+        .foto-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(173, 216, 230, 0.7) 0%, rgba(255, 182, 193, 0.7) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--branco);
+            font-weight: 600;
+        }
+
+        .foto-item:hover .foto-overlay {
+            opacity: 1;
+        }
+
+        @media (max-width: 600px) {
+            .galeria {
+                gap: 1rem;
+            }
+
+            .foto-overlay {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .galeria {
+                gap: 0.8rem;
+            }
+
+            .foto-item {
+                border-radius: 8px;
+            }
+        }
+
+        /* Declaração */
+        .declaracao-section {
+            background: linear-gradient(135deg, var(--azul-bebe) 0%, var(--rosa-bebe) 100%) !important;
+            color: var(--branco) !important;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .declaracao-section h2 {
+            color: var(--branco) !important;
+            border-bottom-color: var(--branco) !important;
+        }
+
+        .declaracao-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .declaracao-texto {
+            font-size: 1.1rem;
+            line-height: 2;
+            color: var(--branco);
+        }
+
+        .declaracao-texto p {
+            margin-bottom: 1.5rem;
+        }
+
+        .assinatura {
+            margin-top: 2rem;
+            font-size: 1.3rem;
+            font-weight: bold;
+            font-style: italic;
+            text-align: right;
+        }
+
+        @media (max-width: 768px) {
+            .declaracao-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .declaracao-texto {
+                font-size: 1rem;
+                line-height: 1.8;
+            }
+
+            .assinatura {
+                text-align: center;
+                font-size: 1.1rem;
+            }
+
+            .moldura-especial {
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .declaracao-container {
+                gap: 1.5rem;
+            }
+
+            .declaracao-texto {
+                font-size: 0.9rem;
+                line-height: 1.6;
+            }
+
+            .declaracao-texto p {
+                margin-bottom: 1rem;
+            }
+
+            .moldura-especial {
+                padding: 1rem;
+                border: 2px solid var(--branco);
+            }
+
+            .moldura-especial img {
+                max-width: 100%;
+                height: auto;
+            }
+
+            .moldura-especial p {
+                font-size: 1rem;
+            }
+        }
+
+        .decoracao-coracao {
+            position: absolute;
+            font-size: 3rem;
+            opacity: 0.3;
+            animation: flutuando 3s ease-in-out infinite;
+        }
+
+        .decoracao-1 {
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+
+        .decoracao-2 {
+            top: 30%;
+            right: 10%;
+            animation-delay: 1s;
+        }
+
+        .decoracao-3 {
+            bottom: 20%;
+            left: 15%;
+            animation-delay: 2s;
+        }
+
+        @keyframes flutuando {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .moldura-especial {
+            border: 3px solid var(--branco);
+            border-radius: 15px;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .declaracao-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .declaracao-texto {
+                font-size: 1rem;
+            }
+
+            .assinatura {
+                text-align: center;
+            }
+        }
+
+        /* Barra de Amor Infinito */
+        .amor-section {
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            padding: 45px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow:
+                0 8px 32px rgba(0, 0, 0, 0.25),
+                inset 0 1px 0 rgba(255, 255, 255, 0.6),
+                inset 0 -1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .amor-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg,
+                rgba(255, 255, 255, 0.6) 0%,
+                rgba(255, 255, 255, 0.2) 50%,
+                rgba(255, 255, 255, 0) 100%);
+            border-radius: 30px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .amor-section::after {
+            content: "";
+            position: absolute;
+            top: -100%;
+            left: -100%;
+            width: 300%;
+            height: 300%;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.25), transparent 40%);
+            animation: brilho 6s infinite linear;
+            pointer-events: none;
+        }
+
+        .amor-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: rgba(230, 173, 173, 0.1);
+            border-radius: 15px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .amor-titulo {
+            font-size: 1.8rem;
+            color: var(--azul-bebe);
+            margin-bottom: 1.5rem;
+            font-weight: bold;
+        }
+
+        .barra-amor-container {
+            position: relative;
+            width: 100%;
+            height: 50px;
+            background: rgba(255, 0, 0, 0.726);
+            border-radius: 50px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1) inset;
+            margin-bottom: 2rem;
+        }
+
+        .barra-amor {
+            display: flex;
+            height: 100%;
+            border-radius: 50px;
+            overflow: visible;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .barra-amor-100 {
+            width: 100%;
+            background: linear-gradient(90deg, var(--azul-bebe) 0%, var(--azul-bebe) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--branco);
+            font-weight: bold;
+            font-size: 1.1rem;
+            white-space: nowrap;
+            min-width: 80px;
+        }
+
+        .barra-amor-infinito {
+            width: 200px;
+            background: linear-gradient(90deg, var(--rosa-bebe) 0%, var(--rosa-bebe) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: expandindo 2s ease-in-out infinite;
+            min-width: 200px;
+        }
+
+        .infinito-symbol {
+            font-size: 2rem;
+            color: var(--branco);
+            font-weight: bold;
+            margin-left: 20px;
+        }
+
+        .percentual {
+            font-size: 1rem;
+            color: var(--branco);
+            margin-right: 10px;
+        }
+
+        .descricao-amor {
+            color: var(--cinza);
+            font-size: 1.1rem;
+            margin-top: 1.5rem;
+            font-style: italic;
+            position: relative;
+            z-index: 2;
+        }
+
+        .eu-te-amo {
+            font-size: 42px;
+            margin-bottom: 25px;
+            letter-spacing: 3px;
+            color: var(--azul-bebe);
+            position: relative;
+            z-index: 2;
+        }
+
+        .botao-amor {
+            padding: 18px 40px;
+            font-size: 20px;
+            border: none;
+            border-radius: 40px;
+            background: linear-gradient(45deg, #ff4d6d, #ff85a1);
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, .2);
+            transition: 0.2s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .botao-amor:hover {
+            transform: scale(1.05);
+        }
+
+        #coracoes-container {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+        }
+
+        .coracao-icone {
+            font-size: 28px;
+            background: linear-gradient(45deg, #ff2e63, #ff8fab);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        @media (max-width: 600px) {
+            .amor-section {
+                padding: 30px;
+                margin: 1.5rem auto;
+            }
+
+            .amor-container {
+                padding: 1.5rem;
+                margin: 1.5rem auto;
+            }
+
+            .amor-titulo {
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+            }
+
+            .barra-amor-container {
+                height: 40px;
+                margin-bottom: 1.5rem;
+            }
+
+            .barra-amor-100 {
+                font-size: 0.9rem;
+            }
+
+            .infinito-symbol {
+                font-size: 1.5rem;
+                margin-left: 10px;
+            }
+
+            .descricao-amor {
+                font-size: 0.95rem;
+                margin-top: 1rem;
+            }
+
+            .eu-te-amo {
+                font-size: 32px;
+                margin-bottom: 15px;
+                letter-spacing: 2px;
+            }
+
+            .botao-amor {
+                padding: 14px 30px;
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .amor-section {
+                padding: 20px;
+                margin: 1rem auto;
+                border-radius: 20px;
+            }
+
+            .amor-container {
+                padding: 1rem;
+                margin: 1rem auto;
+                border-radius: 10px;
+            }
+
+            .amor-titulo {
+                font-size: 1.2rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .barra-amor-container {
+                height: 35px;
+                margin-bottom: 1rem;
+                border-radius: 40px;
+            }
+
+            .barra-amor-100 {
+                font-size: 0.75rem;
+                min-width: 60px;
+            }
+
+            .barra-amor-infinito {
+                width: 150px;
+                min-width: 150px;
+            }
+
+            .percentual {
+                margin-right: 5px;
+                font-size: 0.8rem;
+            }
+
+            .infinito-symbol {
+                font-size: 1.2rem;
+                margin-left: 5px;
+            }
+
+            .descricao-amor {
+                font-size: 0.85rem;
+                margin-top: 0.75rem;
+            }
+
+            .eu-te-amo {
+                font-size: 24px;
+                margin-bottom: 10px;
+                letter-spacing: 1px;
+            }
+
+            .botao-amor {
+                padding: 12px 24px;
+                font-size: 14px;
+            }
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.1);
+            color: var(--branco);
+            margin-top: 3rem;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .social-links {
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            line-height: 40px;
+            color: var(--branco);
+            text-decoration: none;
+            margin: 0 0.5rem;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .social-links a:hover {
+            background: var(--branco);
+            color: var(--rosa-bebe);
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 480px) {
+            footer {
+                padding: 1.5rem;
+                margin-top: 2rem;
+            }
+
+            footer p {
+                font-size: 0.85rem;
+                margin-bottom: 0.3rem;
+            }
+
+            .social-links {
+                margin-top: 0.75rem;
+            }
+
+            .social-links a {
+                width: 35px;
+                height: 35px;
+                line-height: 35px;
+                margin: 0 0.3rem;
+                font-size: 1rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes batida {
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.2);
+            }
+        }
+
+        @keyframes flutuando {
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes expandindo {
+            0%,
+            100% {
+                width: 200px;
+            }
+
+            50% {
+                width: 250px;
+            }
+        }
+
+        @keyframes brilho {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes subir {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-400px);
+                opacity: 0;
+            }
+        }
+
+        .coracao {
+            font-size: 2rem;
+            animation: batida 0.6s infinite;
+            display: inline-block;
+        }
+
+        .decoracao-coracao {
+            position: absolute;
+            font-size: 3rem;
+            opacity: 0.3;
+            animation: flutuando 3s ease-in-out infinite;
+        }
+
+        .decoracao-1 {
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+
+        .decoracao-2 {
+            top: 30%;
+            right: 10%;
+            animation-delay: 1s;
+        }
+
+        .decoracao-3 {
+            bottom: 20%;
+            left: 15%;
+            animation-delay: 2s;
+        }
+
+        .moldura-especial {
+            border: 3px solid var(--branco);
+            border-radius: 15px;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        @media (max-width: 480px) {
+            .decoracao-coracao {
+                font-size: 1.5rem;
+            }
+
+            .moldura-especial {
+                border: 2px solid var(--branco);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#hobbies">Hobbies</a></li>
+            <li><a href="#caracteristicas">Características</a></li>
+            <li><a href="#declaracao">Declaração</a></li>
+            <li><a href="#amor">Meu Amor</a></li>
+            <li><a href="#galeria">Galeria</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>Ana Clara Santiago Costa</h1>
+        <p class="subtitle">Minha Namorada ✨</p>
+    </div>
+
+    <!-- Conteúdo Principal -->
+    <div class="container">
+        <!-- Sobre -->
+        <section id="sobre">
+            <h2>Sobre Ela</h2>
+            <div class="sobre">
+                <div class="sobre-texto">
+                    <h3>Personalidade Especial</h3>
+                    <p>
+                        Ana Clara é uma pessoa incrível que traz alegria para todos ao seu redor.
+                        Com sua personalidade encantadora e genuína, ela consegue fazer qualquer
+                        dia parecer especial. Seus olhos expressivos, suas sardas naturais e seu
+                        cabelo bonito são apenas alguns dos detalhes que a tornam única e adorável.
+                    </p>
+                    <p>
+                        Ela é alguém em quem você pode confiar, sempre pronta para ouvir, apoiar
+                        e oferecer um ombro amigo quando necessário. Sua empatia é contagiante!
+                    </p>
+                </div>
+                <div>
+                    <div class="personalidade-list">
+                        <div class="trait">🌟 Otimista</div>
+                        <div class="trait">😊 Sorridente</div>
+                        <div class="trait">❤️ Carinhosa</div>
+                        <div class="trait">🤫 Introvertida</div>
+                        <div class="trait">💕 Adorável</div>
+                        <div class="trait">🔍 Curiosa</div>
+                        <div class="trait">💬 Empática</div>
+                        <div class="trait">✨ Especial</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hobbies -->
+        <section id="hobbies">
+            <h2>Hobbies & Interesses</h2>
+            <div class="hobbies">
+                <div class="hobby-card">
+                    <h3>💅 Pintar Unhas</h3>
+                    <p>Ela adora criar designs criativos e expressar sua personalidade
+                        através da arte nas unhas. É relaxante e divertido!</p>
+                </div>
+                <div class="hobby-card">
+                    <h3>📺 Assistir Séries</h3>
+                    <p>Uma ótima forma de relaxar e se desligar do mundo. Ela aprecia
+                        boas histórias e personagens bem desenvolvidos.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Características Marcantes -->
+        <section id="caracteristicas">
+            <h2>Características Marcantes</h2>
+            <div class="caracteristicas">
+                <div class="caracteristica-card">
+                    <div class="emoji">�</div>
+                    <h3>Seus Olhos</h3>
+                    <p>Expressivos e cheios de luz, que revelam a beleza de sua alma</p>
+                </div>
+                <div class="caracteristica-card">
+                    <div class="emoji">🌹</div>
+                    <h3>Suas Sardas</h3>
+                    <p>Detalhes naturais que a tornam ainda mais bonita e única</p>
+                </div>
+                <div class="caracteristica-card">
+                    <div class="emoji">💁‍♀️</div>
+                    <h3>Seu Cabelo</h3>
+                    <p>Lindo e frequentemente bem cuidado, complementando sua beleza</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Declaração -->
+        <section class="declaracao-section" id="declaracao">
+            <div class="decoracao-coracao decoracao-1">💕</div>
+            <div class="decoracao-coracao decoracao-2">💕</div>
+            <div class="decoracao-coracao decoracao-3">💕</div>
+
+            <h2>Uma Declaração Especial</h2>
+
+            <div class="declaracao-container">
+                <div class="declaracao-texto">
+                    <p>
+                        Ana Clara, desde que você entrou na minha vida, tudo ficou mais colorido,
+                        mais alegre, mais especial. Seus olhos brilham de um jeito que ilumina meu mundo.
+                    </p>
+                    <p>
+                        Aquela disposição otimista sua, seu sorriso genuíno, sua forma carinhosa de
+                        ser... tudo em você me conquista a cada dia. Suas sardas? Então nem falo,
+                        são perfeitas assim como você é.
+                    </p>
+                    <p>
+                        Quero mais momentos ao seu lado, quero mais risadas, quero viver muito mais
+                        histórias com você. Você é incrível, você é especial, você é a pessoa que
+                        eu quero ao meu lado.
+                    </p>
+                    <p>
+                        <span class="coracao">💕</span> Te amo, Ana Clara <span class="coracao">💕</span>
+                    </p>
+                </div>
+                <div class="moldura-especial">
+                    <div style="text-align: center; font-size: 4rem; margin-bottom: 1rem;">
+                        <img src="imagens/minha-namorada.jpg" alt="Nós Dois" style="width: 100%; border-radius: 10px;">
+                    </div>
+                    <p style="text-align: center; font-size: 1.3rem; font-weight: bold; margin-bottom: 2rem;">
+                        Você é meu amor
+                    </p>
+                    <p style="text-align: center; line-height: 1.8;">
+                        De Fabricio com muito amor e carinho ❤️
+                    </p>
+                </div>
+            </div>
+
+            <div class="assinatura">
+                ~ Fabricio 💕
+            </div>
+        </section>
+
+        <!-- Barra de Amor Infinito -->
+        <section class="amor-section" id="amor">
+            <div class="container">
+                <h2>Quanto Eu Te Amo</h2>
+                <div class="amor-container">
+                    <div class="amor-titulo">
+                        Meu Amor por Você:
+                    </div>
+                    <div class="barra-amor-container">
+                        <div class="barra-amor">
+                            <div class="barra-amor-100">
+                                <span class="percentual">100%</span>
+                            </div>
+                            <div class="barra-amor-infinito">
+                                <span class="infinito-symbol">∞</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="descricao-amor">
+                        Meu amor por você vai além de 100%, é infinito! Cada dia te amo mais e mais.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Galeria de Fotos -->
+        <section id="galeria">
+            <h2>Galeria de Momentos</h2>
+            <div class="galeria">
+                <div class="foto-item">
+                    <img src="imagens/foto-espelho.jpg" alt="Ana Clara">
+                    <div class="foto-overlay">Eu</div>
+                </div>
+                <div class="foto-item">
+                    <img src="imagens/foto-casal.jpg" alt="Nós Dois">
+                    <div class="foto-overlay">Te</div>
+                </div>
+                <div class="foto-item">
+                    <img src="imagens/foto-sardas.jpg" alt="Sardas">
+                    <div class="foto-overlay">Amo</div>
+                </div>
+                <div class="foto-item">
+                    <img src="imagens/foto-rio.jpg" alt="Ana Clara">
+                    <div class="foto-overlay">Quero</div>
+                </div>
+                <div class="foto-item">
+                    <img src="imagens/foto-bijuteria.jpg" alt="Ana Clara">
+                    <div class="foto-overlay">Você</div>
+                </div>
+                <div class="foto-item">
+                    <img src="imagens/foto-beijo.jpg" alt="Ana Clara">
+                    <div class="foto-overlay">Sempre</div>
+                </div>
+                <div class="foto-item">
+                    <img src="imagens/foto-feliz.jpg" alt="Ana Clara">
+                    <div class="foto-overlay">Em</div>
+                </div>
+                <div class="foto-item">
+                    <img src="imagens/foto-casal-2.jpg" alt="Nós Dois">
+                    <div class="foto-overlay">Minha</div>
+                </div>
+                <div class="foto-item">
+                    <img src="imagens/foto-especial.jpg" alt="Ana Clara">
+                    <div class="foto-overlay">Vida</div>
+                </div>
+                <div class="foto-item">
+                    <img src="imagens/amor.jpeg" alt="Ana Clara">
+                    <div class="foto-overlay">Amor</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <section id="amor" class="card amor-section">
+        <h2 class="eu-te-amo">EU TE AMO</h2>
+
+        <button id="btnAmor" class="botao-amor" onclick="window.location.href='brincadeiras-do-amor.html'">
+            Clique Aqui 💗
+        </button>
+
+        <div id="coracoes-container"></div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+        <p>💕 Feito com muito amor</p>
+        <p>&copy; 2026 - Ana Clara Santiago Costa</p>
+        <div class="social-links">
+            <a href="#" title="Instagram">📷</a>
+            <a href="#" title="WhatsApp">💬</a>
+            <a href="#" title="Email">📧</a>
+        </div>
+    </footer>
+</body>
+<script>
+    const btn = document.getElementById("btnAmor");
+    const container = document.getElementById("coracoes-container");
+
+    btn.addEventListener("click", () => {
+
+        const coracao = document.createElement("div");
+        coracao.innerHTML = '<i class="fa-solid fa-heart coracao-icone"></i>';
+
+
+        coracao.style.position = "absolute";
+        coracao.style.left = Math.random() * 90 + "%";
+        coracao.style.bottom = "0px";
+        coracao.style.fontSize = (20 + Math.random() * 20) + "px";
+        coracao.style.animation = "subir 2s linear forwards";
+
+        container.appendChild(coracao);
+
+        setTimeout(() => {
+            coracao.remove();
+        }, 2000);
+
+    });
+</script>
+
+</html>

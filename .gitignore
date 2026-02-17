@@ -1,0 +1,19 @@
+# System files
+.DS_Store
+Thumbs.db
+*.log
+*.swp
+*.swo
+*~
+
+# IDE
+.vscode/
+.idea/
+*.sublime-workspace
+
+# Node modules
+node_modules/
+
+# Backup files
+*.bak
+*Copy*

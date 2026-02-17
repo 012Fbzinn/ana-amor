@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>Brincadeiras do Amor - Ana Clara</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --azul-bebe: #ADD8E6;
+            --rosa-bebe: #FFB6C1;
+            --cinza: #9B9B9B;
+            --branco: #FFFFFF;
+            --texto-escuro: #2C3E50;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ff4d6d, #ff8fab, #ffc2d1);
+            min-height: 100vh;
+            padding: 1rem;
+        }
+
+        header {
+            text-align: center;
+            color: var(--branco);
+            margin-bottom: 2rem;
+            animation: fadeInDown 0.8s ease;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+        }
+
+        .voltar-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .voltar-btn:hover {
+            transform: scale(1.1);
+            background: var(--branco);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .secao {
+            background: var(--branco);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 0.8s ease;
+        }
+
+        .secao h2 {
+            color: var(--rosa-bebe);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            border-bottom: 3px solid var(--rosa-bebe);
+            padding-bottom: 1rem;
+        }
+
+        /* Cartinha */
+        .cartinha-container {
+            display: flex;
+            justify-content: center;
+            perspective: 1000px;
+        }
+
+        .cartinha {
+            width: 300px;
+            height: 400px;
+            background: linear-gradient(135deg, #fff5e1 0%, #ffe4e1 100%);
+            border: 2px solid var(--rosa-bebe);
+            border-radius: 5px;
+            padding: 2rem;
+            cursor: pointer;
+            position: relative;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .cartinha.aberta {
+            transform: rotateY(180deg);
+        }
+
+        .cartinha-frente,
+        .cartinha-verso {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            backface-visibility: hidden;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .cartinha-verso {
+            transform: rotateY(180deg);
+            background: linear-gradient(135deg, #ffe4e1 0%, #fff5e1 100%);
+            overflow-y: auto;
+        }
+
+        .cartinha-frente h3 {
+            font-size: 1.5rem;
+            color: var(--rosa-bebe);
+            margin-bottom: 1rem;
+        }
+
+        .cartinha-frente .envelope-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: flutuando 3s ease-in-out infinite;
+        }
+
+        .cartinha-frente p {
+            font-size: 0.9rem;
+            color: var(--cinza);
+        }
+
+        .cartinha-verso h3 {
+            color: var(--azul-bebe);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .cartinha-verso p {
+            color: var(--texto-escuro);
+            line-height: 1.8;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        @keyframes flutuando {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        /* Raspadinha */
+        .raspadinha-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .raspadinha-mensagem {
+            text-align: center;
+        }
+
+        .raspadinha-mensagem h3 {
+            color: var(--rosa-bebe);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+            white-space: pre-line;
+        }
+
+        .raspadinha-area {
+            position: relative;
+        }
+
+        .raspadinha {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, var(--azul-bebe) 0%, var(--rosa-bebe) 100%);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            user-select: none;
+        }
+
+        .raspadinha-texto {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            color: var(--branco);
+            font-weight: bold;
+            font-size: 1.4rem;
+            line-height: 1.6;
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .raspadinha-texto.revelado {
+            opacity: 1;
+        }
+
+        .raspadinha-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 2;
+            cursor: crosshair;
+            touch-action: none;
+        }
+
+        .raspadinha-reiniciar {
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        .raspadinha-reiniciar button {
+            padding: 12px 30px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 50px;
+            background: linear-gradient(45deg, #ff4d6d, #ff85a1);
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .raspadinha-reiniciar button:hover {
+            transform: scale(1.05);
+        }
+
+        .raspadinha-reiniciar button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        @media (max-width: 768px) {
+            .raspadinha-container {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .raspadinha {
+                height: 250px;
+            }
+
+            .raspadinha-mensagem h3 {
+                font-size: 1.2rem;
+            }
+
+            .raspadinha-texto {
+                font-size: 1.1rem;
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .raspadinha {
+                height: 200px;
+            }
+
+            .raspadinha-mensagem h3 {
+                font-size: 1.1rem;
+            }
+
+            .raspadinha-texto {
+                font-size: 0.95rem;
+                padding: 1rem;
+            }
+
+            .raspadinha-reiniciar button {
+                padding: 10px 24px;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Memory Game */
+        .memory-board {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .memory-card {
+            width: 100%;
+            aspect-ratio: 1;
+            cursor: pointer;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+        }
+
+        .memory-card.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .memory-card.matched {
+            cursor: default;
+            opacity: 0.6;
+        }
+
+        .memory-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transform-style: preserve-3d;
+        }
+
+        .memory-card-front {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--azul-bebe) 0%, var(--rosa-bebe) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            backface-visibility: hidden;
+        }
+
+        .memory-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: white;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backface-visibility: hidden;
+            transform: rotateY(180deg);
+            overflow: hidden;
+        }
+
+        .memory-card-back img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .memory-info {
+            text-align: center;
+            margin-top: 1.5rem;
+            color: var(--texto-escuro);
+            font-weight: bold;
+        }
+
+        .memory-resultado {
+            text-align: center;
+            margin-top: 1rem;
+            padding: 1rem;
+            background: rgba(255, 182, 193, 0.2);
+            border-radius: 10px;
+            color: var(--rosa-bebe);
+            font-weight: bold;
+            min-height: 30px;
+        }
+
+        /* Botão Coraçõezinhos */
+        .coracao-btn-container {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .coracao-btn {
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            background: linear-gradient(45deg, #ff4d6d, #ff85a1);
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .coracao-btn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
+        }
+
+        #coracoes-caindo {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        .coracao-caindo {
+            position: absolute;
+            font-size: 2rem;
+            animation: cair 3s linear forwards;
+            filter: drop-shadow(0 0 2px #ff1a4d) drop-shadow(2px 2px 4px #ff3366) drop-shadow(-2px -2px 4px #ff6699);
+            text-shadow: 
+                2px 2px 8px rgba(255, 26, 77, 0.6),
+                -1px -1px 6px rgba(255, 102, 153, 0.5),
+                3px 3px 12px rgba(255, 51, 102, 0.4);
+        }
+
+        @keyframes cair {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .secao {
+                padding: 1.5rem;
+            }
+
+            .secao h2 {
+                font-size: 1.5rem;
+            }
+
+            .cartinha {
+                width: 250px;
+                height: 350px;
+            }
+
+            .memory-board {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 0.8rem;
+            }
+
+            .voltar-btn {
+                padding: 8px 16px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.6rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+
+            .secao {
+                padding: 1rem;
+                margin-bottom: 1.5rem;
+                border-radius: 15px;
+            }
+
+            .secao h2 {
+                font-size: 1.3rem;
+                margin-bottom: 1rem;
+            }
+
+            .cartinha {
+                width: 200px;
+                height: 300px;
+                padding: 1.5rem;
+            }
+
+            .cartinha-frente h3,
+            .cartinha-verso h3 {
+                font-size: 1.1rem;
+            }
+
+            .cartinha-frente .envelope-icon {
+                font-size: 3rem;
+            }
+
+            .raspadinha-container {
+                grid-template-columns: 1fr;
+            }
+
+            .raspadinha {
+                height: 120px;
+            }
+
+            .memory-board {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.6rem;
+            }
+
+            .coracao-btn {
+                padding: 12px 30px;
+                font-size: 1rem;
+            }
+
+            .voltar-btn {
+                padding: 8px 12px;
+                font-size: 0.8rem;
+                left: 10px;
+                top: 10px;
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="voltar-btn" onclick="window.history.back()">← Voltar</button>
+
+    <header>
+        <h1>Brincadeiras do Amor 💕</h1>
+        <p>Para minha Ana Clara especial</p>
+    </header>
+
+    <div class="container">
+        <!-- Cartinha -->
+        <div class="secao">
+            <h2>💌 A Cartinha</h2>
+            <div class="cartinha-container">
+                <div class="cartinha" id="cartinha" onclick="abrirCartinha()">
+                    <div class="cartinha-frente">
+                        <div class="envelope-icon">💌</div>
+                        <h3>Para Você</h3>
+                        <p>Clique para abrir</p>
+                    </div>
+                    <div class="cartinha-verso">
+                        <h3>Ana Clara, Meu Amor</h3>
+                        <p>Queria que você soubesse o quanto você significa para mim. Cada dia ao seu lado é um privilégio. Seus olhos, seu sorriso, sua forma especial de ser... tudo em você me faz querer ser melhor.
+
+Você é meu porto seguro, minha alegria, meu motivo de sorrir mesmo nos dias cinzentos. Desde que você entrou na minha vida, tudo ficou mais bonito, mais colorido, mais significativo.
+
+Te amo mais do que consigo expressar com palavras, Ana. Obrigado por ser quem você é. ❤️</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Raspadinha -->
+        <div class="secao">
+            <h2>✨ Raspadinha do Amor</h2>
+            <div class="raspadinha-container" id="raspadinhasContainer">
+                <div class="raspadinha-mensagem" id="raspadinhaMensagem">
+                    <!-- Mensagem será preenchida via JavaScript -->
+                </div>
+                <div class="raspadinha-area">
+                    <div class="raspadinha" id="raspadinha">
+                        <div class="raspadinha-texto" id="raspadinhaMensagemRevelada">
+                            <!-- Mensagem revelada será preenchida via JavaScript -->
+                        </div>
+                        <canvas id="canvas-raspadinha" class="raspadinha-canvas"></canvas>
+                    </div>
+                    <div class="raspadinha-reiniciar">
+                        <button id="btnReiniciarRaspadinha" onclick="reiniciarRaspadinha()" disabled>Raspar de Novo 💕</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Jogo da Memória -->
+        <div class="secao">
+            <h2>🎮 Jogo da Memória</h2>
+            <p style="text-align: center; color: var(--cinza); margin-bottom: 1rem;">Encontre os pares de fotos nossas!</p>
+            <div class="memory-board" id="memoryBoard"></div>
+            <div class="memory-info">
+                Pares encontrados: <span id="paresEncontrados">0</span>/5
+            </div>
+            <div class="memory-resultado" id="memoryResultado"></div>
+            <div style="text-align: center; margin-top: 1rem;">
+                <button class="coracao-btn" onclick="reiniciarJogo()" style="background: var(--azul-bebe); color: white;">Recomeçar Jogo</button>
+            </div>
+        </div>
+
+        <!-- Botão Coraçõezinhos -->
+        <div class="secao">
+            <h2>🎉 Deixa Chover Amor</h2>
+            <div class="coracao-btn-container">
+                <button class="coracao-btn" onclick="soltarCoracoes()">
+                    Clica Aqui para Coraçõezinhos! 💗
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="coracoes-caindo"></div>
+
+    <!-- Modal Vitória -->
+    <div id="modalVitoria" style="display: none; position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,0.7); display: flex; align-items: center; justify-content: center;">
+        <div style="background: linear-gradient(135deg, var(--azul-bebe) 0%, var(--rosa-bebe) 100%); padding: 3rem; border-radius: 30px; text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,0.3); animation: pulsar 0.6s ease;">
+            <h2 style="font-size: 3rem; color: white; margin-bottom: 1rem; animation: flutuarTexto 1s ease-in-out infinite;">EU TE AMO ❤️</h2>
+            <p style="color: white; font-size: 1.2rem; margin-bottom: 2rem;">Parabéns, meu amor! Você encontrou todos os pares!</p>
+            <button onclick="fecharModalVitoria()" style="padding: 12px 30px; font-size: 1rem; border: none; border-radius: 50px; background: white; color: #ff4d6d; cursor: pointer; font-weight: bold;">Fechar</button>
+        </div>
+    </div>
+
+    <style>
+        @keyframes pulsar {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes flutuarTexto {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+
+    <script>
+        // Cartinha
+        function abrirCartinha() {
+            const cartinha = document.getElementById('cartinha');
+            cartinha.classList.toggle('aberta');
+        }
+
+        // Raspadinha com Canvas
+        const mensagensRaspadinha = [
+            {
+                pedido: 'Vem raspar esse cartãozinho comigo? 🥰\n\nPassa o cursozinho (ou teu dedinho) no quadrado dourado...',
+                revelada: 'Você é demais! 💕'
+            },
+            {
+                pedido: 'Raspa aí para ver uma coisa especial! ✨\n\nNão aguento esperar você descobrir...',
+                revelada: 'Te amo infinitamente ∞'
+            },
+            {
+                pedido: 'Tem uma mensagem aí esperando você! 💌\n\nVem raspar essa surpresa comigo?',
+                revelada: 'Você é minha felicidade ❤️'
+            },
+            {
+                pedido: 'Raspa, raspa, vem descobrir! 👀\n\nTem algo muito gostoso aí pra você...',
+                revelada: 'Meu coração é só seu 💕'
+            },
+            {
+                pedido: 'Chega de curiosidade, raspa aí! 😋\n\nVou amar ver sua reação!',
+                revelada: 'Você é perfeita do jeito que é ✨'
+            },
+            {
+                pedido: 'Mais uma mensagem pra você! 💖\n\nCome cá raspar esse cartão...',
+                revelada: 'Você é meu tudo 🥺💕'
+            },
+            {
+                pedido: 'Vou te contar um segredo... 🤫\n\nRaspa rápido pra descobrir!',
+                revelada: 'Você me faz muito feliz 😊'
+            },
+            {
+                pedido: 'Essa é da série "te amo"! 💕\n\nRaspa e vê só...',
+                revelada: 'Te amo com todo meu coração ❤️'
+            },
+            {
+                pedido: 'Tá na hora de raspar de novo! 🎉\n\nVamos lá, não demora muito...',
+                revelada: 'Você é minha pessoa favorita 💕'
+            },
+            {
+                pedido: 'Sai de casa cá! 😉\n\nTemho uma declaração pra você...',
+                revelada: 'Cada momento com você é especial ✨'
+            },
+            {
+                pedido: 'Quer saber o que eu penso? 💭\n\nRaspa esse cartãozinho!',
+                revelada: 'Você é meu amor de verdade 💕'
+            },
+            {
+                pedido: 'Vem, raspa aqui comigo... 👉👈\n\nTem coisa fofa aí!',
+                revelada: 'Ser seu namorado é o melhor 💕'
+            }
+        ];
+
+        let indiceAtualRaspadinha = 0;
+        let mouseDown = false;
+        let canvas = null;
+        let ctx = null;
+        let reveladoRaspadinha = false;
+
+        function inicializarRaspadinha() {
+            const raspadinha = document.getElementById('raspadinha');
+            canvas = document.getElementById('canvas-raspadinha');
+            const textElemento = document.getElementById('raspadinhaMensagemRevelada');
+            const mensagemElemento = document.getElementById('raspadinhaMensagem');
+            
+            // Pega uma mensagem aleatória
+            indiceAtualRaspadinha = Math.floor(Math.random() * mensagensRaspadinha.length);
+            const msg = mensagensRaspadinha[indiceAtualRaspadinha];
+
+            // Define tamanho do canvas
+            canvas.width = raspadinha.offsetWidth;
+            canvas.height = raspadinha.offsetHeight;
+
+            ctx = canvas.getContext('2d');
+            
+            // Preencher com gradient
+            const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+            gradient.addColorStop(0, '#FFD700');
+            gradient.addColorStop(0.5, '#FFA500');
+            gradient.addColorStop(1, '#FFD700');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Padrão de riscos
+            ctx.strokeStyle = 'rgba(0,0,0,0.15)';
+            ctx.lineWidth = 1;
+            for (let i = 0; i < canvas.width; i += 3) {
+                ctx.beginPath();
+                ctx.moveTo(i, 0);
+                ctx.lineTo(i + 10, canvas.height);
+                ctx.stroke();
+            }
+
+            reveladoRaspadinha = false;
+            textElemento.textContent = msg.revelada;
+            textElemento.classList.remove('revelado');
+            mensagemElemento.innerHTML = `<h3>${msg.pedido}</h3>`;
+
+            // Event listeners com mousedown e mouseup
+            canvas.addEventListener('mousedown', iniciarRaspagem);
+            canvas.addEventListener('mouseup', pararRaspagem);
+            canvas.addEventListener('mousemove', rasparSeAtivo);
+            canvas.addEventListener('mouseleave', pararRaspagem);
+            
+            // Touch events
+            canvas.addEventListener('touchstart', iniciarRaspagem);
+            canvas.addEventListener('touchend', pararRaspagem);
+            canvas.addEventListener('touchmove', rasparSeAtivo);
+        }
+
+        function iniciarRaspagem() {
+            if (!reveladoRaspadinha) {
+                mouseDown = true;
+            }
+        }
+
+        function pararRaspagem() {
+            mouseDown = false;
+        }
+
+        function rasparSeAtivo(e) {
+            if (!mouseDown || reveladoRaspadinha) return;
+            rasparCartao(e);
+        }
+
+        function rasparCartao(e) {
+            const rect = canvas.getBoundingClientRect();
+            const x = (e.clientX || e.touches?.[0]?.clientX) - rect.left;
+            const y = (e.clientY || e.touches?.[0]?.clientY) - rect.top;
+
+            // Raio do pincel - maior para mais sensibilidade
+            const raio = 40;
+            ctx.clearRect(x - raio, y - raio, raio * 2, raio * 2);
+
+            // Contar pixels transparentes
+            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            const data = imageData.data;
+            let pixelsTransparentes = 0;
+
+            for (let i = 3; i < data.length; i += 4) {
+                if (data[i] < 128) {
+                    pixelsTransparentes++;
+                }
+            }
+
+            const raspado = (pixelsTransparentes / (canvas.width * canvas.height)) * 100;
+
+            // Se 70% raspado, revela tudo automaticamente
+            if (raspado > 70 && !reveladoRaspadinha) {
+                reveladoRaspadinha = true;
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                mouseDown = false;
+                document.getElementById('raspadinhaMensagemRevelada').classList.add('revelado');
+                document.getElementById('btnReiniciarRaspadinha').disabled = false;
+            }
+        }
+
+        function reiniciarRaspadinha() {
+            document.getElementById('btnReiniciarRaspadinha').disabled = true;
+            inicializarRaspadinha();
+        }
+
+        // Jogo da Memória - CORRIGIDO
+        const fotos = [
+            'imagens/foto-espelho.jpg',
+            'imagens/foto-casal.jpg',
+            'imagens/foto-sardas.jpg',
+            'imagens/foto-rio.jpg',
+            'imagens/foto-bijuteria.jpg',
+            'imagens/foto-beijo.jpg',
+            'imagens/foto-feliz.jpg',
+            'imagens/foto-casal-2.jpg',
+            'imagens/foto-especial.jpg',
+            'imagens/amor.jpeg'
+        ];
+
+        let paresArray = [];
+        let cartasViradas = [];
+        let cartasEncontradas = new Set();
+        let paresEncontrados = 0;
+        let podeJogar = true;
+
+        function inicializarJogo() {
+            paresArray = fotos.slice(0, 5).concat(fotos.slice(0, 5));
+            paresArray = paresArray.sort(() => Math.random() - 0.5);
+            cartasViradas = [];
+            cartasEncontradas = new Set();
+            paresEncontrados = 0;
+            podeJogar = true;
+            document.getElementById('paresEncontrados').textContent = '0';
+            document.getElementById('memoryResultado').textContent = '';
+            desenharTabuleiro();
+        }
+
+        function desenharTabuleiro() {
+            const board = document.getElementById('memoryBoard');
+            board.innerHTML = '';
+            
+            paresArray.forEach((foto, index) => {
+                const card = document.createElement('div');
+                card.className = 'memory-card';
+                card.innerHTML = `
+                    <div class="memory-card-inner">
+                        <div class="memory-card-front">💕</div>
+                        <div class="memory-card-back">
+                            <img src="${foto}" alt="Memoria">
+                        </div>
+                    </div>
+                `;
+                card.onclick = () => virarCarta(index, card);
+                board.appendChild(card);
+            });
+        }
+
+        function virarCarta(index, card) {
+            // Se não pode jogar, retorna
+            if (!podeJogar) return;
+            
+            // Se já foi encontrada ou já está virada, ignora
+            if (cartasEncontradas.has(index) || cartasViradas.includes(index)) return;
+            
+            // Se já tem 2 cartas viradas, ignora
+            if (cartasViradas.length >= 2) return;
+
+            cartasViradas.push(index);
+            card.classList.add('flipped');
+
+            if (cartasViradas.length === 2) {
+                podeJogar = false;
+                setTimeout(() => {
+                    verificarPar(cartasViradas[0], cartasViradas[1]);
+                }, 600);
+            }
+        }
+
+        function verificarPar(index1, index2) {
+            const cards = document.querySelectorAll('.memory-card');
+            
+            if (paresArray[index1] === paresArray[index2]) {
+                // Acertou!
+                cards[index1].classList.add('matched');
+                cards[index2].classList.add('matched');
+                cartasEncontradas.add(index1);
+                cartasEncontradas.add(index2);
+                paresEncontrados++;
+                document.getElementById('paresEncontrados').textContent = paresEncontrados;
+                
+                if (paresEncontrados === 5) {
+                    mostrarMensagemVitoria();
+                    podeJogar = false;
+                } else {
+                    podeJogar = true;
+                }
+            } else {
+                // Errou
+                cards[index1].classList.remove('flipped');
+                cards[index2].classList.remove('flipped');
+                podeJogar = true;
+            }
+            
+            cartasViradas = [];
+        }
+
+        function reiniciarJogo() {
+            inicializarJogo();
+        }
+
+        function mostrarMensagemVitoria() {
+            const modal = document.getElementById('modalVitoria');
+            modal.style.display = 'flex';
+        }
+
+        function fecharModalVitoria() {
+            const modal = document.getElementById('modalVitoria');
+            modal.style.display = 'none';
+        }
+
+        // Coraçõezinhos
+        function soltarCoracoes() {
+            const container = document.getElementById('coracoes-caindo');
+            const emojisCoracao = ['💕', '❤️', '💗', '💖', '💝'];
+            
+            for (let i = 0; i < 30; i++) {
+                const coracao = document.createElement('div');
+                coracao.className = 'coracao-caindo';
+                coracao.textContent = emojisCoracao[Math.floor(Math.random() * emojisCoracao.length)];
+                coracao.style.left = Math.random() * 100 + '%';
+                coracao.style.top = '-30px';
+                coracao.style.fontSize = (16 + Math.random() * 24) + 'px';
+                coracao.style.opacity = '1';
+                container.appendChild(coracao);
+                
+                setTimeout(() => coracao.remove(), 3000);
+            }
+        }
+
+        // Inicializar ao carregar a página
+        window.addEventListener('load', () => {
+            inicializarRaspadinha();
+            inicializarJogo();
+        });
+    </script>
+</body>
+</html>
