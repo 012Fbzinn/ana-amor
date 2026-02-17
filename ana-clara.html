@@ -1285,7 +1285,7 @@
     <section id="amor" class="card amor-section">
         <h2 class="eu-te-amo">EU TE AMO</h2>
 
-        <button id="btnAmor" class="botao-amor" onclick="window.location.href='brincadeiras-do-amor.html'">
+        <button id="btnAmor" class="botao-amor">
             Clique Aqui 💗
         </button>
 
@@ -1308,24 +1308,29 @@
     const btn = document.getElementById("btnAmor");
     const container = document.getElementById("coracoes-container");
 
-    btn.addEventListener("click", () => {
+    btn.addEventListener("click", (e) => {
+        e.preventDefault();
 
-        const coracao = document.createElement("div");
-        coracao.innerHTML = '<i class="fa-solid fa-heart coracao-icone"></i>';
+        // gera alguns corações para efeito antes do redirecionamento
+        for (let i = 0; i < 6; i++) {
+            const coracao = document.createElement("div");
+            coracao.innerHTML = '<i class="fa-solid fa-heart coracao-icone"></i>';
+            coracao.style.position = "absolute";
+            coracao.style.left = Math.random() * 90 + "%";
+            coracao.style.bottom = "0px";
+            coracao.style.fontSize = (20 + Math.random() * 20) + "px";
+            coracao.style.animation = "subir 2s linear forwards";
+            container.appendChild(coracao);
 
+            setTimeout(() => {
+                coracao.remove();
+            }, 2200 + Math.random() * 400);
+        }
 
-        coracao.style.position = "absolute";
-        coracao.style.left = Math.random() * 90 + "%";
-        coracao.style.bottom = "0px";
-        coracao.style.fontSize = (20 + Math.random() * 20) + "px";
-        coracao.style.animation = "subir 2s linear forwards";
-
-        container.appendChild(coracao);
-
+        // redireciona após breve atraso para que os corações apareçam
         setTimeout(() => {
-            coracao.remove();
-        }, 2000);
-
+            window.location.href = 'brincadeiras-do-amor.html';
+        }, 600);
     });
 </script>
 
